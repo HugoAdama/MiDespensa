@@ -111,9 +111,9 @@ export function getRecipeFormModalTemplate() {
 
       </div>
 
-      <div class="dialog-footer">
-        <button type="button" class="btn btn-secondary" data-close-dialog>Cancelar</button>
-        <button type="submit" id="saveRecipeSubmitBtn" class="btn btn-primary">Guardar Receta</button>
+      <div class="dialog-footer" style="justify-content: flex-end;">
+        <button type="button" class="btn-modal-action btn-modal-secondary" data-close-dialog>Cancelar</button>
+        <button type="submit" id="saveRecipeSubmitBtn" class="btn-modal-action btn-modal-primary">Guardar Receta</button>
       </div>
     </form>
   </dialog>

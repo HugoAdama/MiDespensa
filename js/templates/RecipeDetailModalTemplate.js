@@ -21,21 +21,23 @@ export function getRecipeDetailModalTemplate() {
     </div>
 
     <div class="dialog-footer">
-      <div style="margin-right: auto; display: flex; gap: 0.5rem; flex-wrap: wrap;">
-        <button id="detailEditBtn" class="btn btn-secondary">
+      <div class="modal-footer-actions">
+        <button id="detailEditBtn" class="btn-modal-action btn-modal-secondary" title="Editar receta">
           ${Icons.edit}
-          Editar
+          <span>Editar</span>
         </button>
-        <button id="detailDuplicateBtn" class="btn btn-secondary" title="Duplicar como nueva receta">
+        <button id="detailDuplicateBtn" class="btn-modal-action btn-modal-secondary" title="Duplicar como nueva receta">
           ${Icons.copy}
-          Duplicar
+          <span>Duplicar</span>
         </button>
-        <button id="detailDeleteBtn" class="btn btn-danger" title="Eliminar receta">
+        <button id="detailDeleteBtn" class="btn-modal-action btn-modal-danger" title="Eliminar receta">
           ${Icons.trash}
-          Eliminar
+          <span>Eliminar</span>
         </button>
       </div>
-      <button class="btn btn-primary" data-close-dialog>Cerrar</button>
+      <button class="btn-modal-action btn-modal-primary" data-close-dialog title="Cerrar vista de cocción">
+        <span>Cerrar</span>
+      </button>
     </div>
   </dialog>
   `;

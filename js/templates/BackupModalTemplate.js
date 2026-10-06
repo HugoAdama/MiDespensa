@@ -52,8 +52,8 @@ export function getBackupModalTemplate() {
       </div>
     </div>
 
-    <div class="dialog-footer">
-      <button class="btn btn-secondary" data-close-dialog>Cerrar</button>
+    <div class="dialog-footer" style="justify-content: flex-end;">
+      <button class="btn-modal-action btn-modal-secondary" data-close-dialog>Cerrar</button>
     </div>
   </dialog>
   `;

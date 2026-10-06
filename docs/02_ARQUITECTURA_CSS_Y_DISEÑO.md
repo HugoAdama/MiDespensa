@@ -51,12 +51,12 @@ Define la estructura espacial de la pantalla donde se alojan los componentes:
 
 ### D. Capa de Componentes (`css/components/`)
 Contiene estilos aislados e independientes del lugar donde se ubiquen:
-1. **`components/buttons.css`**: Estilos de interacción `:hover`, `:active`, sombras de brillo (*primary glow*) y variantes semánticas.
+1. **`components/buttons.css`**: Sistema de botones con variantes semánticas primarias, secundarias, píldoras y el conjunto `.btn-modal-action` con alturas uniformes (42px), bordes refinados, efectos hover con elevación sutil y variantes de acción destructiva elegante (`.btn-modal-danger`).
 2. **`components/cards.css`**: Elevación de tarjetas, efecto de zoom en la fotografía de portada y badges de categoría.
-3. **`components/dialogs.css`**: Estilización del pseudo-elemento nativo `dialog::backdrop` con desenfoque de lente (*blur*), animación de entrada `popIn` y limitación de altura máxima con scroll interno.
+3. **`components/dialogs.css`**: Estilización del pseudo-elemento nativo `dialog::backdrop` con desenfoque de lente (*blur*), animación de entrada `popIn`, pie de página flexible `.dialog-footer` con contenedor `.modal-footer-actions` y cuadrícula responsive para dispositivos móviles.
 4. **`components/forms.css`**: Campos de formulario accesibles con anillos de enfoque (*focus rings*), rejillas adaptables de 2 columnas y filas dinámicas para agregar ingredientes y pasos.
-5. **`components/scaler.css`**: Control numérico redondeado con botones `+` y `-` para el recálculo instantáneo de porciones, y lista de verificación tachada al marcar ingredientes listos.
-6. **`components/timer.css`**: Caja de temporizador culinario con fuente tipográfica monoespaciada para evitar saltos de línea numéricos.
+5. **`components/scaler.css`**: Vista de detalle culinaria con hero cinematográfico, franja de métricas rápidas (`.recipe-metrics-strip`), tarjeta destacada de escalado de porciones con recálculo automático y pasos de preparación con indicadores circulares interactivos.
+6. **`components/timer.css`**: Panel de temporizador culinario con pantalla digital LED monoespaciada, indicador dinámico de estado en cocción (*pulse animation*) y controles de ajuste rápido.
 7. **`components/pantry.css`**: Gradiente suave de despensa, chips removibles con botón de eliminación y sugerencias punteadas en un clic.
 8. **`components/toasts.css`**: Contenedor con `pointer-events: none` y alertas individuales con barra de acento lateral según severidad.
 
