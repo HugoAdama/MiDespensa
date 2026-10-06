@@ -1,21 +1,88 @@
 /* ==========================================================================
    Component: Kitchen Timer Widget
-   Responsibility: Cooking countdown timer and monospace digital display.
+   Responsibility: Modern cooking countdown timer with digital LED display and state indicators.
    ========================================================================== */
 
 .cooking-timer {
   background: var(--bg-surface-elevated);
   border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-lg);
-  padding: 1.35rem 1.6rem;
+  border-radius: var(--radius-xl);
+  padding: 1.5rem 1.75rem;
   margin-top: 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 1.25rem;
+  gap: 1.5rem;
   flex-wrap: wrap;
   box-shadow: var(--shadow-sm);
-  background-image: radial-gradient(at 0% 100%, rgba(232, 74, 39, 0.05) 0px, transparent 60%);
+  background-image: radial-gradient(at 0% 100%, rgba(232, 74, 39, 0.06) 0px, transparent 65%);
+  position: relative;
+  overflow: hidden;
+}
+
+.cooking-timer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--color-primary-gradient);
+}
+
+.timer-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.timer-title {
+  font-size: 1.05rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--text-main);
+}
+
+.timer-status-badge {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0.5rem;
+  border-radius: var(--radius-full);
+  background: var(--bg-hover);
+  color: var(--text-muted);
+}
+
+.timer-status-badge.active {
+  background: rgba(13, 148, 136, 0.15);
+  color: var(--color-accent);
+  animation: pulseOpacity 2s infinite ease-in-out;
+}
+
+@keyframes pulseOpacity {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+.timer-controls-group {
+  display: flex;
+  align-items: center;
+  gap: 1.25rem;
+  flex-wrap: wrap;
+}
+
+.timer-digits-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-input);
+  padding: 0.35rem 1.25rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border-subtle);
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06);
 }
 
 .timer-digits {
@@ -24,9 +91,11 @@
   font-weight: 800;
   color: var(--color-primary);
   letter-spacing: 3px;
-  background: var(--bg-input);
-  padding: 0.2rem 1rem;
-  border-radius: var(--radius-sm);
-  border: 1px solid var(--border-subtle);
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.04);
+  line-height: 1.1;
+}
+
+.timer-buttons-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }

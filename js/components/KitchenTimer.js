@@ -20,17 +20,22 @@ export class KitchenTimer {
     this.secondsRemaining = this.defaultMinutes * 60;
 
     container.innerHTML = `
-      <div>
-        <h4 style="font-size: 1rem; font-weight: 700; display: flex; align-items: center; gap: 0.4rem;">
-          ${Icons.timer}
-          Temporizador de Cocina
-        </h4>
-        <span style="font-size: 0.8rem; color: var(--text-secondary);">Controla los tiempos de cocción sin salir de la receta</span>
+      <div class="timer-info">
+        <div style="display: flex; align-items: center; gap: 0.5rem;">
+          <h4 class="timer-title">
+            ${Icons.timer}
+            Temporizador de Cocina
+          </h4>
+          <span class="timer-status-badge" id="timerStatusBadge">En pausa</span>
+        </div>
+        <span style="font-size: 0.82rem; color: var(--text-secondary);">Controla los tiempos de cocción sin salir de la receta</span>
       </div>
-      <div style="display: flex; align-items: center; gap: 1rem;">
-        <div class="timer-digits" id="timerDigits">00:00</div>
-        <div style="display: flex; gap: 0.4rem;">
-          <button id="timerPresetBtn" class="btn btn-secondary btn-pill" style="font-size: 0.8rem;">
+      <div class="timer-controls-group">
+        <div class="timer-digits-container">
+          <div class="timer-digits" id="timerDigits">00:00</div>
+        </div>
+        <div class="timer-buttons-row">
+          <button id="timerPresetBtn" class="btn btn-secondary btn-pill" style="font-size: 0.8rem;" title="Cambiar duración">
             ${this.defaultMinutes} min
           </button>
           <button id="timerToggleBtn" class="btn btn-primary btn-pill" style="font-size: 0.8rem;">
@@ -44,6 +49,7 @@ export class KitchenTimer {
     `;
 
     this.digitsEl = container.querySelector('#timerDigits');
+    this.statusBadgeEl = container.querySelector('#timerStatusBadge');
     this.toggleBtn = container.querySelector('#timerToggleBtn');
     this.resetBtn = container.querySelector('#timerResetBtn');
     this.presetBtn = container.querySelector('#timerPresetBtn');
@@ -76,6 +82,10 @@ export class KitchenTimer {
     }
     this.isRunning = true;
     if (this.toggleBtn) this.toggleBtn.textContent = 'Pausar';
+    if (this.statusBadgeEl) {
+      this.statusBadgeEl.textContent = 'En cocción';
+      this.statusBadgeEl.classList.add('active');
+    }
 
     this.timerInterval = setInterval(() => {
       if (this.secondsRemaining > 0) {
@@ -84,6 +94,10 @@ export class KitchenTimer {
       } else {
         this.stop();
         if (this.toggleBtn) this.toggleBtn.textContent = 'Iniciar';
+        if (this.statusBadgeEl) {
+          this.statusBadgeEl.textContent = '¡Completado!';
+          this.statusBadgeEl.classList.remove('active');
+        }
         this.playChime();
         toast.info('¡Tiempo terminado! Revisa tu preparación.');
       }
@@ -93,6 +107,10 @@ export class KitchenTimer {
   pause() {
     this.stop();
     if (this.toggleBtn) this.toggleBtn.textContent = 'Reanudar';
+    if (this.statusBadgeEl) {
+      this.statusBadgeEl.textContent = 'En pausa';
+      this.statusBadgeEl.classList.remove('active');
+    }
   }
 
   stop() {
@@ -101,6 +119,10 @@ export class KitchenTimer {
       this.timerInterval = null;
     }
     this.isRunning = false;
+    if (this.statusBadgeEl && this.secondsRemaining > 0) {
+      this.statusBadgeEl.textContent = 'En pausa';
+      this.statusBadgeEl.classList.remove('active');
+    }
   }
 
   reset() {

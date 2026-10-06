@@ -1,34 +1,130 @@
 /* ==========================================================================
-   Component: Servings Scaler & Interactive Checklists
-   Responsibility: Portion scaling stepper controls and cooking step/ingredient checklists.
+   Component: Servings Scaler & Interactive Cooking View
+   Responsibility: Portion scaling stepper controls, metadata cards, and interactive cooking checklists.
    ========================================================================== */
 
-/* Servings Scaler Widget */
-.servings-scaler {
+/* Hero Image in Recipe Detail */
+.recipe-detail-hero {
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-sm);
+  background: var(--bg-surface-elevated);
+}
+
+.recipe-detail-hero img {
+  width: 100%;
+  height: 280px;
+  object-fit: cover;
+  display: block;
+  transition: transform var(--transition-normal);
+}
+
+.recipe-detail-hero:hover img {
+  transform: scale(1.02);
+}
+
+/* Quick Metrics Strip */
+.recipe-metrics-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: 0.75rem;
+  margin: 1.25rem 0;
+}
+
+.metric-pill {
   display: flex;
   align-items: center;
-  gap: 0.65rem;
-  background: var(--bg-input);
-  padding: 0.35rem 0.65rem;
+  gap: 0.6rem;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  padding: 0.65rem 0.9rem;
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+
+.metric-pill:hover {
+  border-color: var(--color-primary-light);
+  transform: translateY(-1px);
+}
+
+.metric-pill-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-primary);
+}
+
+.metric-pill-text strong {
+  display: block;
+  color: var(--text-main);
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+/* Servings Scaler Control Card */
+.scaler-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  background: linear-gradient(135deg, rgba(232, 74, 39, 0.05) 0%, rgba(245, 158, 11, 0.04) 100%);
+  border: 1px solid rgba(232, 74, 39, 0.15);
+  border-radius: var(--radius-lg);
+  padding: 0.9rem 1.25rem;
+  margin-bottom: 1.75rem;
+  flex-wrap: wrap;
+}
+
+.scaler-info {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.scaler-info-title {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: var(--text-main);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.scaler-info-hint {
+  font-size: 0.78rem;
+  color: var(--text-secondary);
+}
+
+.servings-scaler {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: var(--bg-surface);
+  padding: 0.3rem 0.5rem;
   border-radius: var(--radius-full);
   border: 1px solid var(--border-subtle);
   box-shadow: var(--shadow-xs);
 }
 
 .scaler-btn {
-  width: 34px;
-  height: 34px;
+  width: 32px;
+  height: 32px;
   border-radius: var(--radius-full);
-  background: var(--bg-surface);
+  background: var(--bg-surface-elevated);
   border: 1px solid var(--border-subtle);
   color: var(--text-main);
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 800;
-  font-size: 1.2rem;
+  font-size: 1.15rem;
   transition: all var(--transition-fast);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  cursor: pointer;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
 }
 
 .scaler-btn:hover {
@@ -40,45 +136,155 @@
 }
 
 .scaler-btn:active {
-  transform: scale(0.92);
+  transform: scale(0.94);
 }
 
 .scaler-value {
   font-weight: 800;
-  font-size: 1.05rem;
-  min-width: 75px;
+  font-size: 0.98rem;
+  min-width: 72px;
   text-align: center;
   color: var(--color-primary);
   letter-spacing: -0.01em;
 }
 
-/* Interactive Checklist Items */
+/* Ingredients Section & List */
+.ingredients-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.85rem;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.ingredients-progress {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  background: var(--bg-surface-elevated);
+  padding: 0.25rem 0.65rem;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border-subtle);
+  font-weight: 600;
+}
+
+.ingredients-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 0.5rem;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 0.85rem;
+}
+
 .check-item {
   display: flex;
-  align-items: flex-start;
-  gap: 0.85rem;
+  align-items: center;
+  gap: 0.75rem;
   padding: 0.65rem 0.85rem;
-  border-radius: var(--radius-sm);
+  border-radius: var(--radius-md);
+  background: var(--bg-surface);
+  border: 1px solid transparent;
   transition: all var(--transition-fast);
   cursor: pointer;
   user-select: none;
 }
 
 .check-item:hover {
+  border-color: var(--border-subtle);
   background: var(--bg-hover);
+  transform: translateX(2px);
 }
 
 .check-item input[type="checkbox"] {
-  width: 19px;
-  height: 19px;
-  margin-top: 2px;
+  width: 18px;
+  height: 18px;
   accent-color: var(--color-primary);
   cursor: pointer;
   border-radius: 4px;
+  flex-shrink: 0;
+}
+
+.check-item span {
+  font-size: 0.92rem;
+  color: var(--text-main);
+  line-height: 1.4;
+  transition: all var(--transition-fast);
+}
+
+.check-item.done {
+  background: rgba(13, 148, 136, 0.05);
+  border-color: rgba(13, 148, 136, 0.2);
 }
 
 .check-item.done span {
   text-decoration: line-through;
   color: var(--text-muted);
+}
+
+/* Preparation Steps */
+.steps-container {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-top: 0.85rem;
+}
+
+.cooking-step-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1rem 1.25rem;
+  transition: all var(--transition-fast);
+  cursor: pointer;
+  user-select: none;
+}
+
+.cooking-step-card:hover {
+  border-color: var(--color-primary-light);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-xs);
+}
+
+.cooking-step-indicator {
+  width: 32px;
+  height: 32px;
+  border-radius: var(--radius-full);
+  background: var(--color-primary-light);
+  color: var(--color-primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 0.9rem;
+  flex-shrink: 0;
+  transition: all var(--transition-fast);
+  border: 1px solid rgba(232, 74, 39, 0.2);
+}
+
+.cooking-step-card.completed {
+  background: rgba(13, 148, 136, 0.04);
+  border-color: rgba(13, 148, 136, 0.25);
+}
+
+.cooking-step-card.completed .cooking-step-indicator {
+  background: var(--color-accent);
+  color: #FFFFFF;
+  border-color: var(--color-accent);
+}
+
+.cooking-step-text {
+  font-size: 0.94rem;
+  line-height: 1.55;
+  color: var(--text-main);
+  flex: 1;
   transition: color var(--transition-fast);
+}
+
+.cooking-step-card.completed .cooking-step-text {
+  color: var(--text-muted);
 }

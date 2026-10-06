@@ -112,6 +112,7 @@ export class RecipeDetailModal {
 
     const baseServings = Number(recipe.servings) || 4;
     const targetServings = this.currentServings;
+    const totalIngredients = (recipe.ingredients || []).length;
 
     // Render scaled ingredients
     const ingredientsHTML = (recipe.ingredients || []).map((ing, idx) => {
@@ -124,84 +125,118 @@ export class RecipeDetailModal {
       `;
     }).join('');
 
-    // Render cooking steps
+    // Render cooking steps without redundant checkboxes
     const stepsHTML = (recipe.steps || []).map((step, idx) => {
       return `
-        <div class="step-item">
-          <div class="step-num">${idx + 1}</div>
-          <div class="step-content">
-            <label class="check-item" style="padding: 0;">
-              <input type="checkbox" aria-label="Marcar paso como completado">
-              <span>${step}</span>
-            </label>
-          </div>
+        <div class="cooking-step-card" data-step-idx="${idx}">
+          <div class="cooking-step-indicator">${idx + 1}</div>
+          <div class="cooking-step-text">${step}</div>
         </div>
       `;
     }).join('');
 
     const tagsHTML = (recipe.tags || []).map(t => `<span class="badge badge-secondary">#${t}</span>`).join(' ');
     const imageUrl = recipe.image || 'https://images.unsplash.com/photo-1495521821757-a1efb6729352?auto=format&fit=crop&w=800&q=80';
+    const catKey = recipe.category.toLowerCase();
+    const catIcon = Icons[catKey] || Icons.all;
 
     this.body.innerHTML = `
       <!-- Hero Image -->
-      <div style="position: relative; border-radius: var(--radius-lg); overflow: hidden; margin-bottom: 1.5rem; max-height: 280px;">
-        <img src="${imageUrl}" alt="${recipe.title}" style="width: 100%; height: 260px; object-fit: cover;">
+      <div class="recipe-detail-hero">
+        <img src="${imageUrl}" alt="${recipe.title}">
       </div>
 
-      <!-- Header & Servings Scaler -->
-      <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap;">
-        <div>
-          <h2 id="detailRecipeTitle" style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.35rem;">
-            ${recipe.title}
-          </h2>
-          <div style="display: flex; gap: 0.5rem; flex-wrap: wrap; margin-top: 0.5rem;">
-            ${tagsHTML}
+      <!-- Title & Tags -->
+      <div style="margin-bottom: 0.75rem;">
+        <h2 id="detailRecipeTitle" style="font-size: 1.85rem; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 0.5rem; line-height: 1.25;">
+          ${recipe.title}
+        </h2>
+        <div style="display: flex; gap: 0.45rem; flex-wrap: wrap;">
+          ${tagsHTML}
+        </div>
+      </div>
+
+      <!-- Quick Metrics Strip -->
+      <div class="recipe-metrics-strip">
+        <div class="metric-pill">
+          <div class="metric-pill-icon">${Icons.clock}</div>
+          <div class="metric-pill-text">
+            <strong>${recipe.prepTime} min</strong>
+            <span>Preparación</span>
           </div>
         </div>
+        <div class="metric-pill">
+          <div class="metric-pill-icon">${catIcon}</div>
+          <div class="metric-pill-text">
+            <strong>${recipe.category}</strong>
+            <span>Categoría</span>
+          </div>
+        </div>
+        <div class="metric-pill">
+          <div class="metric-pill-icon">${Icons.users}</div>
+          <div class="metric-pill-text">
+            <strong>${targetServings} personas</strong>
+            <span>${targetServings !== baseServings ? `Base: ${baseServings}` : 'Porción base'}</span>
+          </div>
+        </div>
+        <div class="metric-pill">
+          <div class="metric-pill-icon">${Icons.chefHat}</div>
+          <div class="metric-pill-text">
+            <strong>${recipe.difficulty || 'Intermedio'}</strong>
+            <span>Dificultad</span>
+          </div>
+        </div>
+      </div>
 
-        <div style="display: flex; flex-direction: column; align-items: flex-end; gap: 0.35rem;">
-          <span style="font-size: 0.78rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">
+      <!-- Scaler Control Card -->
+      <div class="scaler-card">
+        <div class="scaler-info">
+          <span class="scaler-info-title">
+            ${Icons.users}
             Escalar Porciones
           </span>
-          <div class="servings-scaler">
-            <button class="scaler-btn" id="btnScaleDown" title="Menos porciones">−</button>
-            <span class="scaler-value" id="scalerDisplay">
-              ${targetServings} pers.
-            </span>
-            <button class="scaler-btn" id="btnScaleUp" title="Más porciones">+</button>
-          </div>
-          ${targetServings !== baseServings ? `<span style="font-size: 0.75rem; color: var(--color-primary); font-weight: 600;">(Base: ${baseServings})</span>` : ''}
+          <span class="scaler-info-hint">
+            ${targetServings !== baseServings 
+              ? `Ingredientes recalculados para ${targetServings} comensales (Receta original para ${baseServings})` 
+              : `Ajusta para cuántas personas cocinarás y las cantidades se actualizarán`}
+          </span>
+        </div>
+        <div class="servings-scaler">
+          <button class="scaler-btn" id="btnScaleDown" title="Menos porciones" aria-label="Menos porciones">−</button>
+          <span class="scaler-value" id="scalerDisplay">${targetServings} pers.</span>
+          <button class="scaler-btn" id="btnScaleUp" title="Más porciones" aria-label="Más porciones">+</button>
         </div>
       </div>
 
-      <!-- Ingredients List -->
+      <!-- Ingredients Section -->
       <div style="margin-top: 1.5rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
-          <h3 style="font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem;">
+        <div class="ingredients-header">
+          <h3 style="font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem; margin: 0;">
             ${Icons.ingredients}
-            Ingredientes (${(recipe.ingredients || []).length})
+            Ingredientes (${totalIngredients})
           </h3>
-          <span style="font-size: 0.8rem; color: var(--text-muted);">
-            Toca para tachar lo que tengas listo
-          </span>
+          <span class="ingredients-progress" id="ingProgressBadge">0 de ${totalIngredients} listos</span>
         </div>
-        <div id="detailIngredientsContainer" style="background: var(--bg-surface-elevated); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); padding: 0.75rem;">
+        <div class="ingredients-container" id="detailIngredientsContainer">
           ${ingredientsHTML}
         </div>
       </div>
 
       <!-- Preparation Steps -->
       <div style="margin-top: 2rem;">
-        <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+        <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
           ${Icons.chefHat}
           Preparación Paso a Paso
         </h3>
-        <div id="detailStepsContainer">
+        <p style="font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 0.75rem;">
+          Toca cualquier paso para marcarlo como completado durante la preparación:
+        </p>
+        <div class="steps-container" id="detailStepsContainer">
           ${stepsHTML}
         </div>
       </div>
 
-      <!-- Cooking Timer Widget Mount Point -->
+      <!-- Cooking Timer Mount Point -->
       <div id="cookingTimerContainer" class="cooking-timer"></div>
     `;
 
@@ -223,7 +258,20 @@ export class RecipeDetailModal {
       }
     };
 
-    // Hook Checkbox Styles
+    // Hook Ingredients Progress
+    const updateIngProgress = () => {
+      const total = this.body.querySelectorAll('.check-item input[type="checkbox"]').length;
+      const checked = this.body.querySelectorAll('.check-item input[type="checkbox"]:checked').length;
+      const badge = this.body.querySelector('#ingProgressBadge');
+      if (badge) {
+        badge.textContent = `${checked} de ${total} listos`;
+        if (checked === total && total > 0) {
+          badge.style.borderColor = 'var(--color-accent)';
+          badge.style.color = 'var(--color-accent)';
+        }
+      }
+    };
+
     this.body.querySelectorAll('.check-item input[type="checkbox"]').forEach(chk => {
       chk.addEventListener('change', (e) => {
         const item = e.target.closest('.check-item');
@@ -232,7 +280,22 @@ export class RecipeDetailModal {
         } else {
           item.classList.remove('done');
         }
+        updateIngProgress();
       });
+    });
+
+    // Hook Step Cards Completion
+    this.body.querySelectorAll('.cooking-step-card').forEach(card => {
+      card.onclick = () => {
+        const isDone = card.classList.toggle('completed');
+        const indicator = card.querySelector('.cooking-step-indicator');
+        const idx = Number(card.getAttribute('data-step-idx'));
+        if (indicator) {
+          indicator.innerHTML = isDone 
+            ? `<svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>` 
+            : String(idx + 1);
+        }
+      };
     });
 
     // Mount Kitchen Timer
