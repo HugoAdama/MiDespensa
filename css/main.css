@@ -1,8 +1,20 @@
 /* ==========================================================================
-   Component Styles (Barrel Import)
-   Responsibility: Aggregates modular component stylesheets.
+   Master Stylesheet: SaborCraft Design System
+   Architecture: Layered Modular CSS (Tokens -> Base -> Layout -> Components)
    ========================================================================== */
 
+/* 1. Design Tokens & Theme Variables */
+@import './variables.css';
+
+/* 2. Base Resets & Global Typography */
+@import './base.css';
+
+/* 3. Layout Modules */
+@import './layout/header.css';
+@import './layout/filters.css';
+@import './layout/grid.css';
+
+/* 4. Atomic & Interactive Components */
 @import './components/buttons.css';
 @import './components/cards.css';
 @import './components/dialogs.css';

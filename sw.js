@@ -1,4 +1,4 @@
-const CACHE_NAME = 'saborcraft-v3';
+const CACHE_NAME = 'saborcraft-v4';
 const STATIC_ASSETS = [
   './',
   './index.html',
@@ -7,8 +7,20 @@ const STATIC_ASSETS = [
   './icons/favicon.svg',
   './css/variables.css',
   './css/base.css',
+  './css/main.css',
   './css/components.css',
   './css/layout.css',
+  './css/layout/header.css',
+  './css/layout/filters.css',
+  './css/layout/grid.css',
+  './css/components/buttons.css',
+  './css/components/cards.css',
+  './css/components/dialogs.css',
+  './css/components/forms.css',
+  './css/components/scaler.css',
+  './css/components/timer.css',
+  './css/components/pantry.css',
+  './css/components/toasts.css',
   './js/app.js',
   './js/db.js',
   './js/recipes.js',
@@ -55,7 +67,6 @@ self.addEventListener('fetch', (event) => {
 
   const url = new URL(event.request.url);
 
-  // Stale-while-revalidate for local assets and Google Fonts
   if (url.origin === location.origin || url.hostname.includes('fonts.googleapis.com') || url.hostname.includes('fonts.gstatic.com')) {
     event.respondWith(
       caches.match(event.request).then((cachedResponse) => {

@@ -1,0 +1,25 @@
+/* ==========================================================================
+   Component: Kitchen Timer Widget
+   Responsibility: Cooking countdown timer and monospace digital display.
+   ========================================================================== */
+
+.cooking-timer {
+  background: var(--bg-surface-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  padding: 1.25rem;
+  margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.timer-digits {
+  font-family: monospace;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--color-primary);
+  letter-spacing: 2px;
+}
