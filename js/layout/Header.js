@@ -37,7 +37,7 @@ export class Header {
   }
 
   initTheme() {
-    const saved = localStorage.getItem('saborcraft_theme');
+    const saved = localStorage.getItem('midespensa_theme') || localStorage.getItem('saborcraft_theme');
     const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
     const initialTheme = saved || (prefersDark ? 'dark' : 'light');
 
@@ -49,7 +49,7 @@ export class Header {
       const next = current === 'dark' ? 'light' : 'dark';
 
       document.documentElement.setAttribute('data-theme', next);
-      localStorage.setItem('saborcraft_theme', next);
+      localStorage.setItem('midespensa_theme', next);
       this.themeIcon.innerHTML = next === 'dark' ? Icons.sun : Icons.moon;
     };
   }
@@ -89,7 +89,7 @@ export class Header {
       this.deferredPrompt.prompt();
       const { outcome } = await this.deferredPrompt.userChoice;
       if (outcome === 'accepted') {
-        toast.success('¡Gracias por instalar SaborCraft! 🚀');
+        toast.success('¡Gracias por instalar MiDespensa!');
       }
       this.deferredPrompt = null;
       this.installBtn.style.display = 'none';
@@ -97,7 +97,7 @@ export class Header {
 
     window.addEventListener('appinstalled', () => {
       this.installBtn.style.display = 'none';
-      toast.success('SaborCraft se ha instalado correctamente.');
+      toast.success('MiDespensa se ha instalado correctamente.');
     });
   }
 }

@@ -31,7 +31,7 @@ Define la identidad de la aplicación para el sistema operativo anfitrión:
 
 ### Ciclo de Vida del Service Worker (`sw.js`)
 1. **Instalación (`install`)**: Pre-almacena en caché la totalidad de los archivos estáticos necesarios para la aplicación (HTML, CSS modular, módulos JS, iconos vectoriales).
-2. **Activación (`activate`)**: Revisa las versiones de caché existentes y purga de forma segura las versiones antiguas cuando se detecta una nueva versión (ej. migración de `saborcraft-v3` a `v4`).
+2. **Activación (`activate`)**: Revisa las versiones de caché existentes y purga de forma segura las versiones antiguas cuando se detecta una nueva versión (ej. migración a `midespensa-v1`).
 3. **Interceptación de red (`fetch`)**: Implementa la estrategia **Stale-While-Revalidate**:
    - Devuelve inmediatamente el archivo local desde la caché para conseguir tiempos de respuesta de 0 ms.
    - En paralelo, envía una petición a la red para descargar cualquier actualización e insertarla silenciosamente en la caché para la próxima sesión.

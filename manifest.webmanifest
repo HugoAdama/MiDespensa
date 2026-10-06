@@ -1,6 +1,6 @@
 {
-  "name": "SaborCraft - Gestor de Recetas Inteligente",
-  "short_name": "SaborCraft",
+  "name": "MiDespensa - Gestor de Recetas Inteligente",
+  "short_name": "MiDespensa",
   "description": "Tu recetario de cocina personal con escalado de porciones, buscador por despensa y funcionamiento 100% offline.",
   "start_url": "./index.html",
   "display": "standalone",

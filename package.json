@@ -1,5 +1,5 @@
 {
-  "name": "gestor-recetas-pwa",
+  "name": "midespensa-recetas-pwa",
   "version": "1.0.0",
   "type": "module",
   "description": "Gestor de Recetas Inteligente con soporte offline PWA, IndexedDB, escalado de porciones y buscador por ingredientes.",

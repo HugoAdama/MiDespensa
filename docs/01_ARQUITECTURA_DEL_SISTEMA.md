@@ -1,7 +1,7 @@
 # 01 - Arquitectura del Sistema y Flujo de Datos
 
 ## 1. Visión General
-**SaborCraft** está diseñado bajo los principios de **Separación de Responsabilidades (SoC)**, **Alta Cohesión** y **Bajo Acoplamiento**. No utiliza frameworks monolíticos pesados; en su lugar, implementa una arquitectura modular limpia utilizando JavaScript moderno (ES6+ Modules) y estándares web nativos.
+**MiDespensa** está diseñado bajo los principios de **Separación de Responsabilidades (SoC)**, **Alta Cohesión** y **Bajo Acoplamiento**. No utiliza frameworks monolíticos pesados; en su lugar, implementa una arquitectura modular limpia utilizando JavaScript moderno (ES6+ Modules) y estándares web nativos.
 
 ---
 

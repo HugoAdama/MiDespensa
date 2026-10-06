@@ -1,7 +1,7 @@
 # 02 - Arquitectura CSS y Separación de Responsabilidades de Estilos
 
 ## 1. Visión General
-La arquitectura de estilos de **SaborCraft** sigue una metodología modular en capas inspirada en **SMACSS** (Scalable and Modular Architecture for CSS) e **ITCSS** (Inverted Triangle CSS). 
+La arquitectura de estilos de **MiDespensa** sigue una metodología modular en capas inspirada en **SMACSS** (Scalable and Modular Architecture for CSS) e **ITCSS** (Inverted Triangle CSS). 
 
 Se abandonó el archivo CSS monolítico para dar paso a hojas de estilo atómicas donde cada archivo tiene una única y estricta responsabilidad.
 
@@ -57,7 +57,7 @@ Contiene estilos aislados e independientes del lugar donde se ubiquen:
 4. **`components/forms.css`**: Campos de formulario accesibles con anillos de enfoque (*focus rings*), rejillas adaptables de 2 columnas y filas dinámicas para agregar ingredientes y pasos.
 5. **`components/scaler.css`**: Control numérico redondeado con botones `+` y `-` para el recálculo instantáneo de porciones, y lista de verificación tachada al marcar ingredientes listos.
 6. **`components/timer.css`**: Caja de temporizador culinario con fuente tipográfica monoespaciada para evitar saltos de línea numéricos.
-7. **`components/pantry.css`**: Gradiente suave de despensa, chips removibles con botón `✕` y sugerencias punteadas en un clic.
+7. **`components/pantry.css`**: Gradiente suave de despensa, chips removibles con botón de eliminación y sugerencias punteadas en un clic.
 8. **`components/toasts.css`**: Contenedor con `pointer-events: none` y alertas individuales con barra de acento lateral según severidad.
 
 ---

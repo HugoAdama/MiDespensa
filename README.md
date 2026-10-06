@@ -1,10 +1,10 @@
-# SaborCraft — Gestor de Recetas Inteligente & PWA
+# MiDespensa — Gestor de Recetas Inteligente y PWA
 
-**SaborCraft** es una aplicación web moderna orientada a la gestión gastronómica personal, construida con arquitectura **PWA (Progressive Web App)**, base de datos local persistente en **IndexedDB** (con fallback automático a `localStorage`), **escalado dinámico de porciones**, **buscador inteligente por despensa** ("¿Qué tengo en casa?"), y herramientas interactivas de cocina.
+**MiDespensa** es una aplicación web moderna orientada a la gestión gastronómica personal, construida con arquitectura **PWA (Progressive Web App)**, base de datos local persistente en **IndexedDB** (con fallback automático a `localStorage`), **escalado dinámico de porciones**, **buscador inteligente por despensa** ("¿Qué tengo en casa?"), y herramientas interactivas de cocina.
 
 ---
 
-## 📚 Documentación Técnica Detallada (`docs/`)
+## Documentación Técnica Detallada (`docs/`)
 
 Para una lectura profunda y especializada, consulta la carpeta de documentación dedicada:
 
@@ -18,7 +18,7 @@ Para una lectura profunda y especializada, consulta la carpeta de documentación
 
 ---
 
-## 🏛️ Árbol del Proyecto y Separación de Responsabilidades
+## Árbol del Proyecto y Separación de Responsabilidades
 
 El proyecto implementa una separación estricta de responsabilidades (SoC) en todas sus capas:
 
@@ -87,7 +87,7 @@ e:\GESTOR_RECETAS/
 
 ---
 
-## 🚀 Inicio Rápido
+## Inicio Rápido
 
 ### Prerrequisitos
 - Node.js instalado (v18 o superior).
@@ -102,4 +102,4 @@ npx serve -l 3000 .
 ```
 
 Abre tu navegador en:
-👉 **[http://localhost:3000](http://localhost:3000)**
+**[http://localhost:3000](http://localhost:3000)**

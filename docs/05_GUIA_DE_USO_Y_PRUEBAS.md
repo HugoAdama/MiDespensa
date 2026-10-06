@@ -1,6 +1,6 @@
 # 05 - Guía de Uso y Casos de Prueba
 
-Esta guía explica paso a paso cómo probar cada una de las funcionalidades implementadas en **SaborCraft**.
+Esta guía explica paso a paso cómo probar cada una de las funcionalidades implementadas en **MiDespensa**.
 
 ---
 
@@ -66,7 +66,7 @@ Esta guía explica paso a paso cómo probar cada una de las funcionalidades impl
 ### Prueba 5: Respaldo y Restauración JSON
 1. En la cabecera, haz clic en el icono de copia de seguridad (dos flechas circulares).
 2. Pulsa **"Descargar Archivo JSON"**.
-   - **Resultado esperado**: Se descargará en tu equipo el archivo `saborcraft_recetas_YYYY-MM-DD.json`.
+   - **Resultado esperado**: Se descargará en tu equipo el archivo `midespensa_recetas_YYYY-MM-DD.json`.
 3. Prueba a modificar o borrar recetas en la aplicación.
 4. Vuelve al modal de copia de seguridad, selecciona tu archivo JSON con el selector de archivos y pulsa **"Reemplazar todo"**.
    - **Resultado esperado**: Todas tus recetas originales se restablecen inmediatamente.

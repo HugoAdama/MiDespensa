@@ -2,10 +2,10 @@
  * Database Module (IndexedDB with LocalStorage Fallback)
  */
 
-const DB_NAME = 'SaborCraftDB';
+const DB_NAME = 'MiDespensaDB';
 const DB_VERSION = 1;
 const STORE_NAME = 'recipes';
-const LOCAL_STORAGE_KEY = 'saborcraft_recipes_fallback';
+const LOCAL_STORAGE_KEY = 'midespensa_recipes_fallback';
 
 export const INITIAL_RECIPES = [
   {

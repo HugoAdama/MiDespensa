@@ -23,7 +23,7 @@ export function exportRecipesToJSON(recipes) {
   }
 
   const exportData = {
-    app: 'SaborCraft',
+    app: 'MiDespensa',
     version: '1.0',
     exportedAt: new Date().toISOString(),
     totalRecipes: recipes.length,
@@ -37,7 +37,7 @@ export function exportRecipesToJSON(recipes) {
   const dateStr = new Date().toISOString().slice(0, 10);
   const link = document.createElement('a');
   link.href = url;
-  link.download = `saborcraft_recetas_${dateStr}.json`;
+  link.download = `midespensa_recetas_${dateStr}.json`;
   document.body.appendChild(link);
   link.click();
   document.body.removeChild(link);
