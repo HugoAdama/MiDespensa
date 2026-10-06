@@ -1,0 +1,24 @@
+{
+  "name": "SaborCraft - Gestor de Recetas Inteligente",
+  "short_name": "SaborCraft",
+  "description": "Tu recetario de cocina personal con escalado de porciones, buscador por despensa y funcionamiento 100% offline.",
+  "start_url": "./index.html",
+  "display": "standalone",
+  "background_color": "#12151A",
+  "theme_color": "#E84A27",
+  "icons": [
+    {
+      "src": "./icons/icon.svg",
+      "sizes": "192x192 512x512",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./icons/favicon.svg",
+      "sizes": "64x64",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ],
+  "categories": ["food", "lifestyle", "utilities"]
+}

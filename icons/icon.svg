@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <defs>
+    <linearGradient id="chefGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FF6B4A" />
+      <stop offset="50%" stop-color="#E84A27" />
+      <stop offset="100%" stop-color="#B82E11" />
+    </linearGradient>
+    <linearGradient id="panGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#2D3748" />
+      <stop offset="100%" stop-color="#1A202C" />
+    </linearGradient>
+    <filter id="shadow" x="-10%" y="-10%" width="130%" height="130%">
+      <feDropShadow dx="0" dy="12" stdDeviation="16" flood-color="#000" flood-opacity="0.25" />
+    </filter>
+  </defs>
+  <rect width="512" height="512" rx="128" fill="url(#chefGrad)"/>
+  <g filter="url(#shadow)" transform="translate(64, 64) scale(0.75)">
+    <!-- Chef Hat & Pot Silhouette -->
+    <path d="M256 70 C310 70 350 110 350 160 C380 165 400 195 400 230 C400 265 375 295 340 300 L172 300 C137 295 112 265 112 230 C112 195 132 165 162 160 C162 110 202 70 256 70 Z" fill="#FFFFFF"/>
+    <path d="M160 310 L352 310 Q356 345 352 360 L160 360 Q156 345 160 310 Z" fill="#FFE5D9"/>
+    <!-- Cooking pan base -->
+    <ellipse cx="256" cy="400" rx="140" ry="25" fill="#FFFFFF" opacity="0.3"/>
+    <circle cx="210" cy="210" r="14" fill="#FF6B4A"/>
+    <circle cx="302" cy="210" r="14" fill="#FF6B4A"/>
+    <path d="M220 250 Q256 280 292 250" stroke="#FF6B4A" stroke-width="12" stroke-linecap="round" fill="none"/>
+    <!-- Sparkles -->
+    <path d="M120 120 L130 95 L140 120 L165 130 L140 140 L130 165 L120 140 L95 130 Z" fill="#FFD166"/>
+    <path d="M380 130 L388 110 L396 130 L416 138 L396 146 L388 166 L380 146 L360 138 Z" fill="#FFD166"/>
+  </g>
+</svg>

@@ -1,0 +1,13 @@
+{
+  "name": "gestor-recetas-pwa",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Gestor de Recetas Inteligente con soporte offline PWA, IndexedDB, escalado de porciones y buscador por ingredientes.",
+  "scripts": {
+    "start": "serve . -l 3000",
+    "dev": "serve . -l 3000"
+  },
+  "devDependencies": {
+    "serve": "^14.2.4"
+  }
+}
