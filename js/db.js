@@ -47,7 +47,7 @@ export const INITIAL_RECIPES = [
     prepTime: 15,
     servings: 4,
     difficulty: 'Fácil',
-    image: 'https://images.unsplash.com/photo-1540420773420-3366772f4999?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1541288097308-7b8e3f58c4c6?auto=format&fit=crop&w=800&q=80',
     favorite: true,
     tags: ['Mexicana', 'Aguacate', 'Vegano', 'Rápido'],
     ingredients: [

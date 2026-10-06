@@ -4,15 +4,16 @@
    ========================================================================== */
 
 .pantry-banner {
-  background: linear-gradient(135deg, rgba(13, 148, 136, 0.08), rgba(16, 185, 129, 0.08));
-  border: 1px solid rgba(13, 148, 136, 0.25);
+  background: linear-gradient(135deg, rgba(13, 148, 136, 0.08) 0%, rgba(16, 185, 129, 0.09) 100%);
+  border: 1px solid rgba(13, 148, 136, 0.28);
   border-radius: var(--radius-lg);
-  padding: 1.25rem;
+  padding: 1.5rem;
   margin-top: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 0.85rem;
+  gap: 1rem;
   animation: fadeIn 0.3s ease;
+  box-shadow: 0 4px 16px -2px rgba(13, 148, 136, 0.08);
 }
 
 .pantry-banner-header {
@@ -25,53 +26,76 @@
 .pantry-banner-title {
   display: flex;
   align-items: center;
-  gap: 0.5rem;
-  font-size: 1.05rem;
-  font-weight: 700;
+  gap: 0.65rem;
+  font-size: 1.15rem;
+  font-weight: 800;
   color: var(--color-secondary);
+  letter-spacing: -0.01em;
 }
 
 .pantry-tags-cloud {
   display: flex;
   flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 0.75rem;
+  gap: 0.6rem;
+  margin-top: 0.85rem;
 }
 
 .pantry-chip {
   display: inline-flex;
   align-items: center;
-  gap: 0.4rem;
-  padding: 0.35rem 0.85rem;
+  gap: 0.5rem;
+  padding: 0.45rem 1rem;
   border-radius: var(--radius-full);
   background: var(--color-secondary-light);
   color: var(--color-secondary);
-  font-size: 0.88rem;
-  font-weight: 600;
+  font-size: 0.9rem;
+  font-weight: 700;
   animation: fadeIn 0.2s ease;
+  border: 1px solid rgba(13, 148, 136, 0.25);
+  box-shadow: 0 2px 6px rgba(13, 148, 136, 0.08);
+  transition: transform var(--transition-fast);
+}
+
+.pantry-chip:hover {
+  transform: translateY(-1px);
 }
 
 .pantry-chip-remove {
-  background: none;
+  background: rgba(13, 148, 136, 0.15);
   border: none;
-  color: inherit;
-  font-size: 1rem;
+  color: var(--color-secondary);
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  font-size: 0.8rem;
   cursor: pointer;
   display: flex;
   align-items: center;
-}
-
-.pantry-suggestion-btn {
-  padding: 0.3rem 0.75rem;
-  border-radius: var(--radius-full);
-  font-size: 0.82rem;
-  border: 1px dashed var(--border-subtle);
-  color: var(--text-secondary);
+  justify-content: center;
   transition: all var(--transition-fast);
 }
 
+.pantry-chip-remove:hover {
+  background: var(--color-danger);
+  color: #FFFFFF;
+}
+
+.pantry-suggestion-btn {
+  padding: 0.38rem 0.85rem;
+  border-radius: var(--radius-full);
+  font-size: 0.84rem;
+  font-weight: 600;
+  border: 1px dashed var(--border-hover);
+  background: var(--bg-surface);
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+  cursor: pointer;
+}
+
 .pantry-suggestion-btn:hover {
-  background: var(--bg-hover);
+  background: var(--color-secondary-light);
   color: var(--color-secondary);
   border-color: var(--color-secondary);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 6px rgba(13, 148, 136, 0.12);
 }

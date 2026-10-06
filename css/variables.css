@@ -1,96 +1,112 @@
 /* ==========================================================================
-   Design Tokens & Variables
+   Design Tokens & Variables: SaborCraft Premium Culinary Design System
    ========================================================================== */
 
 :root {
   /* Brand Culinary Palette */
   --color-primary: #E84A27;
-  --color-primary-hover: #CF3C1B;
-  --color-primary-light: #FFEDE8;
-  --color-primary-glow: rgba(232, 74, 39, 0.25);
+  --color-primary-hover: #D03B1A;
+  --color-primary-gradient: linear-gradient(135deg, #FF633E 0%, #E84A27 60%, #C43516 100%);
+  --color-primary-light: #FFF0EB;
+  --color-primary-glow: rgba(232, 74, 39, 0.28);
 
   --color-secondary: #0D9488;
-  --color-secondary-hover: #0F766E;
-  --color-secondary-light: #E6FFFA;
+  --color-secondary-hover: #0B766C;
+  --color-secondary-gradient: linear-gradient(135deg, #14B8A6 0%, #0D9488 100%);
+  --color-secondary-light: #E6FBF7;
 
-  --color-accent-amber: #F59E0B;
+  --color-accent-amber: #D97706;
   --color-accent-amber-light: #FEF3C7;
   --color-success: #10B981;
   --color-success-light: #D1FAE5;
   --color-danger: #EF4444;
   --color-danger-light: #FEE2E2;
 
-  /* Neutrals - Light Theme (Default) */
-  --bg-app: #F8F9FA;
+  /* Neutrals & Surfaces - Light Theme */
+  --bg-app: #F8F9FB;
+  --bg-app-ambient: radial-gradient(at 0% 0%, rgba(232, 74, 39, 0.035) 0px, transparent 50%),
+                    radial-gradient(at 100% 0%, rgba(245, 158, 11, 0.04) 0px, transparent 50%),
+                    radial-gradient(at 50% 100%, rgba(13, 148, 136, 0.03) 0px, transparent 50%);
   --bg-surface: #FFFFFF;
   --bg-surface-elevated: #FFFFFF;
   --bg-card: #FFFFFF;
-  --bg-input: #F3F4F6;
+  --bg-input: #F3F5F8;
   --bg-input-focus: #FFFFFF;
-  --bg-hover: #F3F4F6;
-  --border-subtle: #E5E7EB;
+  --bg-hover: #F1F4F8;
+  --border-subtle: #E8ECEF;
+  --border-hover: #D1D7DC;
   --border-focus: #E84A27;
 
-  --text-main: #111827;
-  --text-secondary: #4B5563;
-  --text-muted: #9CA3AF;
+  --text-main: #141A24;
+  --text-secondary: #4B5565;
+  --text-muted: #8E9BAE;
   --text-inverted: #FFFFFF;
 
-  /* Shadows */
-  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08), 0 1px 2px rgba(0, 0, 0, 0.04);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.08), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
-  --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-  --shadow-floating: 0 14px 28px rgba(232, 74, 39, 0.25);
+  /* Multi-Layered Shadows (Floating & Tactile) */
+  --shadow-xs: 0 1px 2px rgba(18, 24, 38, 0.04);
+  --shadow-sm: 0 2px 4px rgba(18, 24, 38, 0.04), 0 1px 2px rgba(18, 24, 38, 0.02);
+  --shadow-md: 0 4px 12px -2px rgba(18, 24, 38, 0.06), 0 2px 4px -1px rgba(18, 24, 38, 0.03);
+  --shadow-lg: 0 12px 24px -4px rgba(18, 24, 38, 0.08), 0 4px 8px -2px rgba(18, 24, 38, 0.04);
+  --shadow-xl: 0 24px 38px -6px rgba(18, 24, 38, 0.12), 0 12px 16px -4px rgba(18, 24, 38, 0.04);
+  
+  --shadow-card: 0 1px 3px rgba(18, 24, 38, 0.04), 0 6px 16px -2px rgba(18, 24, 38, 0.06);
+  --shadow-card-hover: 0 16px 36px -8px rgba(18, 24, 38, 0.12), 0 6px 14px -3px rgba(232, 74, 39, 0.12);
+  --shadow-floating: 0 12px 28px -4px rgba(232, 74, 39, 0.38);
 
   /* Typography */
   --font-family-sans: 'Outfit', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
   --font-family-serif: 'Playfair Display', Georgia, serif;
 
-  /* Layout & Sizing */
-  --radius-sm: 6px;
-  --radius-md: 12px;
-  --radius-lg: 18px;
-  --radius-xl: 24px;
+  /* Radii */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 20px;
+  --radius-xl: 28px;
   --radius-full: 9999px;
 
-  --transition-fast: 150ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-normal: 250ms cubic-bezier(0.4, 0, 0.2, 1);
-  --transition-spring: 350ms cubic-bezier(0.34, 1.56, 0.64, 1);
+  /* Transitions */
+  --transition-fast: 180ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-normal: 260ms cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-spring: 380ms cubic-bezier(0.34, 1.56, 0.64, 1);
 
-  --glass-bg: rgba(255, 255, 255, 0.85);
-  --glass-border: rgba(255, 255, 255, 0.4);
+  /* Frosted Glass */
+  --glass-bg: rgba(255, 255, 255, 0.88);
+  --glass-border: rgba(255, 255, 255, 0.7);
 }
 
-/* Dark Theme */
+/* ==========================================================================
+   Dark Theme: Obsidian & Warm Ember Palette
+   ========================================================================== */
 [data-theme="dark"] {
-  --bg-app: #0F1218;
-  --bg-surface: #171B24;
-  --bg-surface-elevated: #1F2532;
-  --bg-card: #171B24;
-  --bg-input: #12151D;
-  --bg-input-focus: #1B212E;
-  --bg-hover: #262D3C;
-  --border-subtle: #2A3242;
-  --border-focus: #FF6642;
+  --bg-app: #0C0F14;
+  --bg-app-ambient: radial-gradient(at 0% 0%, rgba(232, 74, 39, 0.08) 0px, transparent 50%),
+                    radial-gradient(at 100% 0%, rgba(217, 119, 6, 0.07) 0px, transparent 50%),
+                    radial-gradient(at 50% 100%, rgba(13, 148, 136, 0.05) 0px, transparent 50%);
+  --bg-surface: #141922;
+  --bg-surface-elevated: #1B212E;
+  --bg-card: #141922;
+  --bg-input: #10141C;
+  --bg-input-focus: #18202D;
+  --bg-hover: #222938;
+  --border-subtle: #232A38;
+  --border-hover: #333C4E;
+  --border-focus: #FF6B47;
 
-  --text-main: #F9FAFB;
-  --text-secondary: #CBD5E1;
-  --text-muted: #64748B;
-  --text-inverted: #0F1218;
+  --text-main: #F3F5F9;
+  --text-secondary: #9DA8BA;
+  --text-muted: #5D687A;
+  --text-inverted: #0C0F14;
 
-  --color-primary-light: rgba(232, 74, 39, 0.18);
-  --color-secondary-light: rgba(13, 148, 136, 0.2);
-  --color-accent-amber-light: rgba(245, 158, 11, 0.18);
-  --color-success-light: rgba(16, 185, 129, 0.18);
-  --color-danger-light: rgba(239, 68, 68, 0.2);
+  --color-primary-light: rgba(232, 74, 39, 0.16);
+  --color-secondary-light: rgba(13, 148, 136, 0.18);
+  --color-accent-amber-light: rgba(217, 119, 6, 0.18);
+  --color-success-light: rgba(16, 185, 129, 0.16);
+  --color-danger-light: rgba(239, 68, 68, 0.18);
 
-  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
-  --shadow-md: 0 4px 8px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 10px 20px rgba(0, 0, 0, 0.5);
-  --shadow-xl: 0 20px 30px rgba(0, 0, 0, 0.6);
+  --shadow-card: 0 4px 14px rgba(0, 0, 0, 0.45);
+  --shadow-card-hover: 0 16px 36px rgba(0, 0, 0, 0.65), 0 4px 16px rgba(232, 74, 39, 0.18);
 
-  --glass-bg: rgba(23, 27, 36, 0.85);
+  --glass-bg: rgba(18, 23, 31, 0.88);
   --glass-border: rgba(255, 255, 255, 0.08);
 }

@@ -34,6 +34,9 @@ export class RecipeCard {
     const imageUrl = recipe.image || 'https://images.unsplash.com/photo-1495521821757-a1efb6729352?auto=format&fit=crop&w=800&q=80';
     const favIcon = recipe.favorite ? Icons.starFilled : Icons.starOutline;
 
+    const diff = (recipe.difficulty || 'Fácil').toLowerCase();
+    const diffClass = diff.includes('inter') ? 'intermediate' : (diff.includes('avan') ? 'advanced' : '');
+
     card.innerHTML = `
       <div class="card-img-wrap">
         <img class="card-img" src="${imageUrl}" alt="${recipe.title}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1495521821757-a1efb6729352?auto=format&fit=crop&w=800&q=80'">
@@ -45,7 +48,10 @@ export class RecipeCard {
       <div class="card-content">
         <div class="card-meta-top">
           <span class="badge badge-primary">${categoryIcon} ${recipe.category}</span>
-          <span style="font-size: 0.82rem; color: var(--text-muted); font-weight: 500;">${recipe.difficulty || 'Fácil'}</span>
+          <span class="card-difficulty-pill">
+            <span class="difficulty-dot ${diffClass}"></span>
+            ${recipe.difficulty || 'Fácil'}
+          </span>
         </div>
         <h3 class="card-title">${recipe.title}</h3>
         <div class="card-info-row">
