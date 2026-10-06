@@ -92,7 +92,16 @@ e:\GESTOR_RECETAS/
 
 ---
 
-## Inicio Rápido
+## Despliegue y Acceso Web (Producción)
+
+La aplicación se encuentra desplegada y disponible públicamente a través de **GitHub Pages**:
+
+- **Acceso web**: [https://hugoadama.github.io/MiDespensa/](https://hugoadama.github.io/MiDespensa/)
+- **Soporte PWA**: El despliegue cuenta con certificado SSL/HTTPS activo, permitiendo la instalación directa como aplicación nativa en dispositivos móviles y de escritorio.
+
+---
+
+## Inicio Rápido (Desarrollo Local)
 
 ### Prerrequisitos
 - Node.js instalado (v18 o superior).

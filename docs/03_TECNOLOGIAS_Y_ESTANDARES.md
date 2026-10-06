@@ -36,6 +36,12 @@ Define la identidad de la aplicación para el sistema operativo anfitrión:
    - Devuelve inmediatamente el archivo local desde la caché para conseguir tiempos de respuesta de 0 ms.
    - En paralelo, envía una petición a la red para descargar cualquier actualización e insertarla silenciosamente en la caché para la próxima sesión.
 
+### Despliegue en GitHub Pages y Contexto Seguro (HTTPS)
+La especificación oficial de las Progressive Web Apps restringe el registro de Service Workers exclusivamente a **Contextos Seguros (`Secure Contexts`)**:
+- En desarrollo: El navegador permite excepciones en `localhost` y `127.0.0.1`.
+- En producción: Requiere obligatoriamente protocolo `HTTPS` con certificados SSL válidos.
+- **Ventaja de GitHub Pages**: Provee certificados TLS/SSL administrados automáticamente y enrutamiento bajo el dominio `*.github.io`. Al haberse diseñado todo el sistema de importaciones y enlaces mediante rutas relativas (`./`), la aplicación se ejecuta de forma nativa dentro de cualquier subcarpeta de repositorio (como `/MiDespensa/`) sin necesidad de configurar variables de entorno de base URL complejas ni proxies inversos.
+
 ---
 
 ## 3. Web Audio API (Alarma Acústica Offline)

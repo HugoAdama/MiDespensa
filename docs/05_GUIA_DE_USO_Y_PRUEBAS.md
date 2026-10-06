@@ -6,6 +6,12 @@ Esta guía explica paso a paso cómo probar cada una de las funcionalidades impl
 
 ## 1. Puesta en Marcha
 
+### Opción A: Acceso Directo en Producción (GitHub Pages)
+No requiere instalar nada en tu computadora ni clonar el repositorio:
+1. Abre tu navegador web en: **[https://hugoadama.github.io/MiDespensa/](https://hugoadama.github.io/MiDespensa/)**
+2. La aplicación cargará con todas sus funciones listas para ser utilizadas.
+
+### Opción B: Ejecución Local
 1. Asegúrate de tener Node.js instalado.
 2. Inicia el servidor local:
    ```bash
@@ -74,8 +80,14 @@ Esta guía explica paso a paso cómo probar cada una de las funcionalidades impl
 ---
 
 ### Prueba 6: PWA e Instalación Offline
-1. En Google Chrome o Edge, verás el botón **"Instalar App"** o el icono de instalación en la barra de direcciones.
-2. Instala la app y ábrela desde el acceso directo de tu escritorio.
-3. Desconecta tu conexión a Internet o activa el Modo Avión en tu sistema operativo.
-4. Recarga la aplicación.
+1. **Instalación en Escritorio (Chrome, Edge)**: 
+   - Abre la URL en producción `https://hugoadama.github.io/MiDespensa/`.
+   - Verás el botón **"Instalar App"** en la cabecera o el icono de instalación en la barra de direcciones.
+   - Instala la app y ábrela desde el acceso directo de tu escritorio.
+2. **Instalación en Teléfonos Móviles**:
+   - En Android (Chrome): Pulsa los tres puntos del menú del navegador y selecciona *"Instalar aplicación"* o *"Agregar a pantalla principal"*.
+   - En iOS (Safari): Pulsa el botón de compartir y selecciona *"Agregar al inicio"*.
+3. **Prueba de Modo Offline**:
+   - Desconecta tu conexión a Internet o activa el Modo Avión en tu dispositivo.
+   - Recarga la aplicación.
    - **Resultado esperado**: La app carga de forma instantánea gracias al Service Worker, el badge de conexión cambia a *"Sin conexión"*, y puedes seguir consultando, creando recetas y usando el temporizador sin fallos.
