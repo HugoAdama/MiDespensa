@@ -247,10 +247,10 @@ export class RecipeFormModal {
 
     if (id) {
       await store.updateRecipe(id, data);
-      toast.success('¡Receta actualizada con éxito! 🎉');
+      toast.success('Receta actualizada con éxito.');
     } else {
       await store.addRecipe(data);
-      toast.success('¡Nueva receta creada con éxito! 🍳');
+      toast.success('Nueva receta creada con éxito.');
     }
 
     this.close();

@@ -27,7 +27,7 @@ export class BackupModal {
       try {
         const recipes = store.getRecipes();
         exportRecipesToJSON(recipes);
-        toast.success('¡Archivo JSON exportado y descargado con éxito! 📁');
+        toast.success('Archivo JSON exportado y descargado con éxito.');
       } catch (err) {
         alert(err.message);
       }
@@ -46,7 +46,7 @@ export class BackupModal {
         const count = await store.mergeRecipes(imported);
         this.modal.close();
         this.fileInput.value = '';
-        toast.success(`Se combinaron ${count} recetas exitosamente. ✅`);
+        toast.success(`Se combinaron ${count} recetas exitosamente.`);
       } catch (err) {
         alert(err.message);
       }
@@ -60,7 +60,7 @@ export class BackupModal {
         return;
       }
 
-      if (!confirm('⚠️ Esta acción borrará todas las recetas actuales y cargará solo las del archivo seleccionado. ¿Deseas continuar?')) {
+      if (!confirm('Esta acción borrará todas las recetas actuales y cargará solo las del archivo seleccionado. ¿Deseas continuar?')) {
         return;
       }
 
@@ -69,7 +69,7 @@ export class BackupModal {
         await store.replaceAll(imported);
         this.modal.close();
         this.fileInput.value = '';
-        toast.success(`Se importaron ${imported.length} recetas en reemplazo total. ✅`);
+        toast.success(`Se importaron ${imported.length} recetas en reemplazo total.`);
       } catch (err) {
         alert(err.message);
       }

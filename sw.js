@@ -1,4 +1,4 @@
-const CACHE_NAME = 'saborcraft-v2';
+const CACHE_NAME = 'saborcraft-v3';
 const STATIC_ASSETS = [
   './',
   './index.html',
@@ -16,6 +16,7 @@ const STATIC_ASSETS = [
   './js/scaler.js',
   './js/export-import.js',
   './js/ui.js',
+  './js/components/Icons.js',
   './js/components/Toast.js',
   './js/components/RecipeCard.js',
   './js/components/RecipeDetailModal.js',

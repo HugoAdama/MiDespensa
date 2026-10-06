@@ -96,7 +96,7 @@ export class UIManager {
 
     // Filter badge description
     let filterDescription = '';
-    if (store.filters.onlyFavorites) filterDescription += '⭐ Solo favoritas ';
+    if (store.filters.onlyFavorites) filterDescription += 'Solo favoritas ';
     if (store.filters.category !== 'todas') filterDescription += `• Categoría: ${store.filters.category} `;
     if (store.filters.maxTime > 0) filterDescription += `• ≤ ${store.filters.maxTime} min `;
     if (store.filters.pantryMode && store.filters.pantryIngredients.length > 0) {

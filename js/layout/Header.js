@@ -4,6 +4,7 @@
  */
 
 import { toast } from '../components/Toast.js';
+import { Icons } from '../components/Icons.js';
 
 export class Header {
   constructor({ onBrandClick }) {
@@ -41,7 +42,7 @@ export class Header {
     const initialTheme = saved || (prefersDark ? 'dark' : 'light');
 
     document.documentElement.setAttribute('data-theme', initialTheme);
-    this.themeIcon.textContent = initialTheme === 'dark' ? '☀️' : '🌙';
+    this.themeIcon.innerHTML = initialTheme === 'dark' ? Icons.sun : Icons.moon;
 
     this.themeToggleBtn.onclick = () => {
       const current = document.documentElement.getAttribute('data-theme');
@@ -49,7 +50,7 @@ export class Header {
 
       document.documentElement.setAttribute('data-theme', next);
       localStorage.setItem('saborcraft_theme', next);
-      this.themeIcon.textContent = next === 'dark' ? '☀️' : '🌙';
+      this.themeIcon.innerHTML = next === 'dark' ? Icons.sun : Icons.moon;
     };
   }
 

@@ -5,15 +5,7 @@
 
 import { store } from '../recipes.js';
 import { toast } from './Toast.js';
-
-const CATEGORY_EMOJIS = {
-  desayuno: '🥞',
-  almuerzo: '🍲',
-  cena: '🥗',
-  postre: '🍰',
-  snack: '🥑',
-  bebida: '🍹'
-};
+import { Icons } from './Icons.js';
 
 export class RecipeCard {
   static create(recipe, onSelect) {
@@ -23,13 +15,14 @@ export class RecipeCard {
     card.setAttribute('role', 'button');
     card.setAttribute('aria-label', `Ver receta: ${recipe.title}`);
 
-    const emoji = CATEGORY_EMOJIS[recipe.category.toLowerCase()] || '🍴';
+    const catKey = recipe.category.toLowerCase();
+    const categoryIcon = Icons[catKey] || Icons.all;
 
     // Pantry matching badge if pantry mode is active
     let pantryBadgeHTML = '';
     if (typeof recipe.matchPercentage === 'number' && store.filters.pantryMode && store.filters.pantryIngredients.length > 0) {
       if (recipe.matchPercentage === 100) {
-        pantryBadgeHTML = `<span class="badge badge-success card-pantry-badge">✨ 100% Listo para cocinar</span>`;
+        pantryBadgeHTML = `<span class="badge badge-success card-pantry-badge">${Icons.sparkles} 100% Listo para cocinar</span>`;
       } else if (recipe.matchPercentage > 0) {
         const missing = recipe.totalIngredients - recipe.matchCount;
         pantryBadgeHTML = `<span class="badge badge-amber card-pantry-badge">${recipe.matchPercentage}% en despensa (faltan ${missing})</span>`;
@@ -39,34 +32,29 @@ export class RecipeCard {
     }
 
     const imageUrl = recipe.image || 'https://images.unsplash.com/photo-1495521821757-a1efb6729352?auto=format&fit=crop&w=800&q=80';
+    const favIcon = recipe.favorite ? Icons.starFilled : Icons.starOutline;
 
     card.innerHTML = `
       <div class="card-img-wrap">
         <img class="card-img" src="${imageUrl}" alt="${recipe.title}" loading="lazy" onerror="this.src='https://images.unsplash.com/photo-1495521821757-a1efb6729352?auto=format&fit=crop&w=800&q=80'">
         <button class="card-fav-btn ${recipe.favorite ? 'is-fav' : ''}" title="${recipe.favorite ? 'Quitar de favoritas' : 'Añadir a favoritas'}" aria-label="Favorita">
-          ${recipe.favorite ? '★' : '☆'}
+          ${favIcon}
         </button>
         ${pantryBadgeHTML}
       </div>
       <div class="card-content">
         <div class="card-meta-top">
-          <span class="badge badge-primary">${emoji} ${recipe.category}</span>
+          <span class="badge badge-primary">${categoryIcon} ${recipe.category}</span>
           <span style="font-size: 0.82rem; color: var(--text-muted); font-weight: 500;">${recipe.difficulty || 'Fácil'}</span>
         </div>
         <h3 class="card-title">${recipe.title}</h3>
         <div class="card-info-row">
           <span class="card-info-item">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <circle cx="12" cy="12" r="10"></circle>
-              <polyline points="12 6 12 12 16 14"></polyline>
-            </svg>
+            ${Icons.clock}
             ${recipe.prepTime} min
           </span>
           <span class="card-info-item">
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-              <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-              <circle cx="9" cy="7" r="4"></circle>
-            </svg>
+            ${Icons.users}
             ${recipe.servings || 4} porc.
           </span>
           <span class="card-info-item" style="margin-left: auto;">
@@ -81,7 +69,7 @@ export class RecipeCard {
     favBtn.addEventListener('click', (e) => {
       e.stopPropagation();
       store.toggleFavorite(recipe.id);
-      toast.success(recipe.favorite ? 'Eliminada de favoritas' : 'Añadida a favoritas ⭐');
+      toast.success(recipe.favorite ? 'Eliminada de favoritas' : 'Añadida a favoritas');
     });
 
     // Card select action

@@ -7,6 +7,7 @@ import { store } from '../recipes.js';
 import { scaleIngredient } from '../scaler.js';
 import { KitchenTimer } from './KitchenTimer.js';
 import { toast } from './Toast.js';
+import { Icons } from './Icons.js';
 
 export class RecipeDetailModal {
   constructor({ onEdit, onDeleted }) {
@@ -60,8 +61,11 @@ export class RecipeDetailModal {
     this.currentRecipe = recipe;
     this.currentServings = Number(recipe.servings) || 4;
 
-    this.catBadge.textContent = recipe.category;
-    this.timeBadge.textContent = `⏱️ ${recipe.prepTime} min`;
+    const catKey = recipe.category.toLowerCase();
+    const catIcon = Icons[catKey] || Icons.all;
+
+    this.catBadge.innerHTML = `${catIcon} ${recipe.category}`;
+    this.timeBadge.innerHTML = `${Icons.clock} ${recipe.prepTime} min`;
 
     this.render();
     this.modal.showModal();
@@ -143,8 +147,9 @@ export class RecipeDetailModal {
       <!-- Ingredients List -->
       <div style="margin-top: 1.5rem;">
         <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
-          <h3 style="font-size: 1.2rem; font-weight: 700;">
-            🥣 Ingredientes (${(recipe.ingredients || []).length})
+          <h3 style="font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem;">
+            ${Icons.ingredients}
+            Ingredientes (${(recipe.ingredients || []).length})
           </h3>
           <span style="font-size: 0.8rem; color: var(--text-muted);">
             Toca para tachar lo que tengas listo
@@ -157,8 +162,9 @@ export class RecipeDetailModal {
 
       <!-- Preparation Steps -->
       <div style="margin-top: 2rem;">
-        <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem;">
-          👨‍🍳 Preparación Paso a Paso
+        <h3 style="font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+          ${Icons.chefHat}
+          Preparación Paso a Paso
         </h3>
         <div id="detailStepsContainer">
           ${stepsHTML}

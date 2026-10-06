@@ -4,6 +4,7 @@
  */
 
 import { toast } from './Toast.js';
+import { Icons } from './Icons.js';
 
 export class KitchenTimer {
   constructor() {
@@ -20,7 +21,10 @@ export class KitchenTimer {
 
     container.innerHTML = `
       <div>
-        <h4 style="font-size: 1rem; font-weight: 700;">⏱️ Temporizador de Cocina</h4>
+        <h4 style="font-size: 1rem; font-weight: 700; display: flex; align-items: center; gap: 0.4rem;">
+          ${Icons.timer}
+          Temporizador de Cocina
+        </h4>
         <span style="font-size: 0.8rem; color: var(--text-secondary);">Controla los tiempos de cocción sin salir de la receta</span>
       </div>
       <div style="display: flex; align-items: center; gap: 1rem;">
@@ -81,7 +85,7 @@ export class KitchenTimer {
         this.stop();
         if (this.toggleBtn) this.toggleBtn.textContent = 'Iniciar';
         this.playChime();
-        toast.info('⏰ ¡Tiempo terminado! Revisa tu preparación.');
+        toast.info('¡Tiempo terminado! Revisa tu preparación.');
       }
     }, 1000);
   }

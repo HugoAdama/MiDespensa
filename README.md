@@ -1,10 +1,10 @@
-# 🍳 SaborCraft — Gestor de Recetas Inteligente & PWA
+# SaborCraft — Gestor de Recetas Inteligente & PWA
 
 **SaborCraft** es una aplicación web moderna orientada a la gestión gastronómica personal, construida con arquitectura **PWA (Progressive Web App)**, base de datos local persistente en **IndexedDB** (con fallback automático a `localStorage`), **escalado dinámico de porciones**, **buscador inteligente por despensa** ("¿Qué tengo en casa?"), y herramientas interactivas de cocina.
 
 ---
 
-## 🏛️ Arquitectura del Proyecto y Separación de Responsabilidades
+## Arquitectura del Proyecto y Separación de Responsabilidades
 
 El proyecto implementa el principio de **Separación de Responsabilidades (SoC)** tanto a nivel visual (CSS) como lógico (JavaScript modular ES6).
 
@@ -81,7 +81,7 @@ e:\GESTOR_RECETAS/
 
 ---
 
-## 🛠️ Tecnologías y Estándares Web Modernos Utilizados
+## Tecnologías y Estándares Web Modernos Utilizados
 
 1. **JavaScript ES6+ Moderno**: Módulos nativos (`import`/`export`), clases y async/await sin necesidad de compiladores pesados.
 2. **HTML5 Semántico & Diálogos Nativos**: Uso de `<dialog closedby="any">` con fallback para backdrop dismiss según los estándares modernos.
