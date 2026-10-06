@@ -55,3 +55,12 @@ Crear una PWA real no es únicamente añadir un archivo de configuración; exige
 El reemplazo sistemático de emojis por iconos vectoriales SVG aportó los siguientes beneficios:
 - **Consistencia multiplataforma**: Los emojis varían notablemente de aspecto entre Windows, Android y macOS; los vectores SVG mantienen exactamente el mismo peso de trazo, proporción y color de acento.
 - **Alineación y legibilidad**: Los iconos SVG se escalan proporcionalmente con la tipografía y permiten estados interactivos dinámicos (cambiar colores en `:hover` o rellenarse al marcar favoritos).
+
+---
+
+## 7. Descongestión del HTML y Encapsulamiento de Plantillas
+
+Al principio del proyecto, `index.html` contenía más de 440 líneas de código acumulando formularios, cuadros de diálogo y tarjetas auxiliares. 
+- **Lección aprendida**: Un archivo HTML sobrecargado dificulta el mantenimiento, la navegación del código y fomenta el acoplamiento involuntario entre elementos independientes.
+- **Solución adoptada**: Descongestionar `index.html` dejando únicamente la estructura macro y delegar el marcado de cada diálogo a módulos de plantilla en `js/templates/`.
+- **Beneficio**: `index.html` redujo su extensión casi a la mitad, mejorando drásticamente su claridad y permitiendo que cada componente gestione de forma autónoma su propio ciclo de vida e inyección en el DOM.

@@ -4,7 +4,9 @@
  */
 
 import { store } from '../recipes.js';
+import { getRecipeFormModalTemplate } from '../templates/RecipeFormModalTemplate.js';
 import { toast } from './Toast.js';
+import { Icons } from './Icons.js';
 
 const PRESET_IMAGES = [
   { name: 'Paella / Arroz', url: 'https://images.unsplash.com/photo-1534080564583-6be75777b70a?auto=format&fit=crop&w=800&q=80' },
@@ -19,7 +21,7 @@ const PRESET_IMAGES = [
 
 export class RecipeFormModal {
   constructor({ onSaved }) {
-    this.modal = document.getElementById('recipeFormModal');
+    this.ensureDOM();
     this.form = document.getElementById('recipeForm');
     this.titleEl = document.getElementById('formModalTitle');
     this.idInput = document.getElementById('formRecipeId');
@@ -35,6 +37,35 @@ export class RecipeFormModal {
     this.onSaved = onSaved;
 
     this.setupEvents();
+  }
+
+  ensureDOM() {
+    let modal = document.getElementById('recipeFormModal');
+    if (!modal) {
+      const container = document.getElementById('modalsContainer') || document.body;
+      container.insertAdjacentHTML('beforeend', getRecipeFormModalTemplate());
+      modal = document.getElementById('recipeFormModal');
+    }
+    this.modal = modal;
+
+    // Modal close buttons
+    this.modal.querySelectorAll('[data-close-dialog]').forEach(btn => {
+      btn.onclick = () => this.close();
+    });
+
+    // Backdrop click dismiss fallback
+    this.modal.addEventListener('click', (event) => {
+      if (event.target === this.modal) {
+        const rect = this.modal.getBoundingClientRect();
+        const isInContent = (
+          rect.top <= event.clientY &&
+          event.clientY <= rect.top + rect.height &&
+          rect.left <= event.clientX &&
+          event.clientX <= rect.left + rect.width
+        );
+        if (!isInContent) this.close();
+      }
+    });
   }
 
   setupEvents() {
@@ -57,13 +88,15 @@ export class RecipeFormModal {
     }
 
     // Dynamic row buttons
-    document.getElementById('addIngredientRowBtn').onclick = () => {
-      this.addIngredientRow();
-    };
+    const addIngBtn = document.getElementById('addIngredientRowBtn');
+    if (addIngBtn) {
+      addIngBtn.onclick = () => this.addIngredientRow();
+    }
 
-    document.getElementById('addStepRowBtn').onclick = () => {
-      this.addStepRow();
-    };
+    const addStepBtn = document.getElementById('addStepRowBtn');
+    if (addStepBtn) {
+      addStepBtn.onclick = () => this.addStepRow();
+    }
 
     // Form submit
     this.form.onsubmit = async (e) => {
@@ -137,7 +170,9 @@ export class RecipeFormModal {
       <input type="number" step="any" min="0" placeholder="Cant." class="form-input ing-amount" style="width: 85px;" value="${amount}">
       <input type="text" placeholder="Unidad (g, ml, taza...)" class="form-input ing-unit" style="width: 140px;" value="${unit}">
       <input type="text" placeholder="Nombre del ingrediente (ej. pechuga de pollo) *" class="form-input ing-name" style="flex: 1;" value="${name}" required>
-      <button type="button" class="btn-icon btn-danger remove-row-btn" title="Eliminar fila" style="width: 36px; height: 36px; font-size: 0.9rem;">✕</button>
+      <button type="button" class="btn-icon btn-danger remove-row-btn" title="Eliminar fila" style="width: 36px; height: 36px;" aria-label="Eliminar fila">
+        ${Icons.trash}
+      </button>
     `;
 
     row.querySelector('.remove-row-btn').onclick = () => {
@@ -159,7 +194,9 @@ export class RecipeFormModal {
     row.innerHTML = `
       <span class="step-num" style="width: 28px; height: 28px; font-size: 0.8rem;">${stepNum}</span>
       <textarea class="form-textarea step-text" rows="2" placeholder="Describe este paso de la preparación..." style="flex: 1;" required>${text}</textarea>
-      <button type="button" class="btn-icon btn-danger remove-row-btn" title="Eliminar paso" style="width: 36px; height: 36px; font-size: 0.9rem;">✕</button>
+      <button type="button" class="btn-icon btn-danger remove-row-btn" title="Eliminar paso" style="width: 36px; height: 36px;" aria-label="Eliminar paso">
+        ${Icons.trash}
+      </button>
     `;
 
     row.querySelector('.remove-row-btn').onclick = () => {

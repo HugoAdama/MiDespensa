@@ -1,4 +1,4 @@
-const CACHE_NAME = 'midespensa-v1';
+const CACHE_NAME = 'midespensa-v2';
 const STATIC_ASSETS = [
   './',
   './index.html',
@@ -37,7 +37,10 @@ const STATIC_ASSETS = [
   './js/components/PantryWidget.js',
   './js/components/BackupModal.js',
   './js/layout/Header.js',
-  './js/layout/FiltersBar.js'
+  './js/layout/FiltersBar.js',
+  './js/templates/RecipeDetailModalTemplate.js',
+  './js/templates/RecipeFormModalTemplate.js',
+  './js/templates/BackupModalTemplate.js'
 ];
 
 self.addEventListener('install', (event) => {

@@ -5,11 +5,12 @@
 
 import { store } from '../recipes.js';
 import { exportRecipesToJSON, parseRecipesFromJSONFile } from '../export-import.js';
+import { getBackupModalTemplate } from '../templates/BackupModalTemplate.js';
 import { toast } from './Toast.js';
 
 export class BackupModal {
   constructor() {
-    this.modal = document.getElementById('backupModal');
+    this.ensureDOM();
     this.openBtn = document.getElementById('openBackupBtn');
     this.exportBtn = document.getElementById('exportJSONBtn');
     this.fileInput = document.getElementById('importFileInput');
@@ -19,8 +20,39 @@ export class BackupModal {
     this.setup();
   }
 
+  ensureDOM() {
+    let modal = document.getElementById('backupModal');
+    if (!modal) {
+      const container = document.getElementById('modalsContainer') || document.body;
+      container.insertAdjacentHTML('beforeend', getBackupModalTemplate());
+      modal = document.getElementById('backupModal');
+    }
+    this.modal = modal;
+  }
+
   setup() {
-    this.openBtn.onclick = () => this.modal.showModal();
+    if (this.openBtn) {
+      this.openBtn.onclick = () => this.modal.showModal();
+    }
+
+    // Modal close buttons
+    this.modal.querySelectorAll('[data-close-dialog]').forEach(btn => {
+      btn.onclick = () => this.modal.close();
+    });
+
+    // Backdrop click dismiss fallback
+    this.modal.addEventListener('click', (event) => {
+      if (event.target === this.modal) {
+        const rect = this.modal.getBoundingClientRect();
+        const isInContent = (
+          rect.top <= event.clientY &&
+          event.clientY <= rect.top + rect.height &&
+          rect.left <= event.clientX &&
+          event.clientX <= rect.left + rect.width
+        );
+        if (!isInContent) this.modal.close();
+      }
+    });
 
     // Export
     this.exportBtn.onclick = () => {

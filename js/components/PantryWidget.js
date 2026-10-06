@@ -99,7 +99,7 @@ export class PantryWidget {
       chip.className = 'pantry-chip';
       chip.innerHTML = `
         ${item}
-        <button type="button" class="pantry-chip-remove" title="Quitar ${item}">✕</button>
+        <button type="button" class="pantry-chip-remove" title="Quitar ${item}">&times;</button>
       `;
 
       chip.querySelector('.pantry-chip-remove').onclick = () => {

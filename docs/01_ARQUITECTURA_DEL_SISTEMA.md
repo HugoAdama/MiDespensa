@@ -24,6 +24,11 @@
 │   ├── BackupModal.js       (Importador/Exportador JSON)     │
 │   ├── Toast.js             (Notificaciones flotantes)       │
 │   └── Icons.js             (Iconografía vectorial SVG)      │
+│                                                             │
+│   Plantillas Modulares (js/templates/)                      │
+│   ├── RecipeDetailModalTemplate.js                          │
+│   ├── RecipeFormModalTemplate.js                            │
+│   └── BackupModalTemplate.js                                │
 └──────────────────────────────┬──────────────────────────────┘
                                │ Eventos del usuario
                                ▼
@@ -81,3 +86,14 @@ Ningún componente visual conoce los detalles internos de otro componente:
 - `KitchenTimer.js` desconoce si está dentro de un modal o en una página completa; solo necesita un contenedor donde montarse (`attach(container)`).
 - `RecipeCard.js` desconoce la existencia de `RecipeDetailModal.js`; cuando el usuario hace clic en una tarjeta, emite un callback `onSelect(recipeId)` que es manejado por el orquestador.
 - `PantryWidget.js` no renderiza las recetas; solo modifica el estado de la despensa en el Store, y la cuadrícula reacciona automáticamente.
+
+---
+
+## 5. Modularización del HTML y Plantillas Encapsuladas
+Para evitar la sobrecarga del archivo `index.html` (que anteriormente albergaba cientos de líneas de formularios, modales y tarjetas secundarias), se implementó el patrón de **Componentes con Plantillas Encapsuladas**:
+- **`index.html` ligero y semántico**: Contiene exclusivamente la estructura base del viewport (cabecera, buscador, barra de navegación, contenedor de tarjetas y punto de montaje `#modalsContainer`).
+- **Módulos de Plantilla (`js/templates/`)**: Cada diálogo complejo (`RecipeFormModalTemplate`, `RecipeDetailModalTemplate`, `BackupModalTemplate`) aísla su propio marcado HTML, permitiendo que los componentes los inyecten en el DOM únicamente cuando se instancian.
+- **Ventajas técnicas**:
+  - Reduce la complejidad cognitiva al abrir `index.html`.
+  - Evita colisiones de identificadores y facilita el mantenimiento granular de campos de formularios.
+  - No depende de herramientas de compilación externas ni de peticiones HTTP asíncronas adicionales, manteniendo la compatibilidad offline absoluta de la PWA.

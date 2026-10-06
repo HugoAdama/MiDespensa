@@ -83,6 +83,11 @@ e:\GESTOR_RECETAS/
         ├── KitchenTimer.js      # Temporizador de cocina con síntesis Web Audio API
         ├── PantryWidget.js      # Interfaz interactiva de despensa
         └── BackupModal.js       # Gestor de exportación/importación JSON
+    │
+    └── templates/               # Plantillas modulares HTML (descongestión de index.html)
+        ├── RecipeDetailModalTemplate.js # Marcado y vista de cocción
+        ├── RecipeFormModalTemplate.js   # Formulario reactivo y campos dinámicos
+        └── BackupModalTemplate.js       # Panel de exportación e importación
 ```
 
 ---

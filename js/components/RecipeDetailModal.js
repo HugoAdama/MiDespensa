@@ -5,13 +5,14 @@
 
 import { store } from '../recipes.js';
 import { scaleIngredient } from '../scaler.js';
+import { getRecipeDetailModalTemplate } from '../templates/RecipeDetailModalTemplate.js';
 import { KitchenTimer } from './KitchenTimer.js';
 import { toast } from './Toast.js';
 import { Icons } from './Icons.js';
 
 export class RecipeDetailModal {
   constructor({ onEdit, onDeleted }) {
-    this.modal = document.getElementById('recipeDetailModal');
+    this.ensureDOM();
     this.body = document.getElementById('recipeDetailBody');
     this.catBadge = document.getElementById('detailCategoryBadge');
     this.timeBadge = document.getElementById('detailTimeBadge');
@@ -26,6 +27,35 @@ export class RecipeDetailModal {
     this.currentServings = 4;
 
     this.setupStaticActions();
+  }
+
+  ensureDOM() {
+    let modal = document.getElementById('recipeDetailModal');
+    if (!modal) {
+      const container = document.getElementById('modalsContainer') || document.body;
+      container.insertAdjacentHTML('beforeend', getRecipeDetailModalTemplate());
+      modal = document.getElementById('recipeDetailModal');
+    }
+    this.modal = modal;
+
+    // Modal close buttons
+    this.modal.querySelectorAll('[data-close-dialog]').forEach(btn => {
+      btn.onclick = () => this.close();
+    });
+
+    // Backdrop click dismiss fallback
+    this.modal.addEventListener('click', (event) => {
+      if (event.target === this.modal) {
+        const rect = this.modal.getBoundingClientRect();
+        const isInContent = (
+          rect.top <= event.clientY &&
+          event.clientY <= rect.top + rect.height &&
+          rect.left <= event.clientX &&
+          event.clientX <= rect.left + rect.width
+        );
+        if (!isInContent) this.close();
+      }
+    });
   }
 
   setupStaticActions() {
@@ -119,7 +149,7 @@ export class RecipeDetailModal {
       </div>
 
       <!-- Header & Servings Scaler -->
-      <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 1rem;">
+      <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 1rem; flex-wrap: wrap;">
         <div>
           <h2 id="detailRecipeTitle" style="font-size: 1.75rem; font-weight: 800; margin-bottom: 0.35rem;">
             ${recipe.title}
@@ -146,7 +176,7 @@ export class RecipeDetailModal {
 
       <!-- Ingredients List -->
       <div style="margin-top: 1.5rem;">
-        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem; flex-wrap: wrap; gap: 0.5rem;">
           <h3 style="font-size: 1.2rem; font-weight: 700; display: flex; align-items: center; gap: 0.5rem;">
             ${Icons.ingredients}
             Ingredientes (${(recipe.ingredients || []).length})
